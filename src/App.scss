@@ -1,0 +1,52 @@
+.App {
+  min-height: 100vh;
+  background: #203757;
+  color: white;
+  align-items: center;
+  padding-top: 2rem;
+
+  header {
+    width: 90%;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid gray;
+    border-radius: 0.5rem;
+    padding: 1rem;
+
+    .score-board {
+      background-color: white;
+      color: black;
+      padding: 1rem 2rem;
+      align-items: center;
+      border-radius: 0.5rem;
+
+      h3 {
+        font-size: 3rem;
+      }
+    }
+  }
+
+  main {
+    width: 60%;
+    aspect-ratio: 1;
+    background-image: url("../public/images/bg-pentagon.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    align-items: center;
+    justify-content: center;
+
+    .row-1 {
+      width: 40%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background-color: white;
+      align-items: center;
+      justify-content: center;
+      border: 11px solid red;
+
+      img {
+        width: 50%;
+      }
+    }
+  }
+}

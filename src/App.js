@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App flex-col">
+        <header className="flex">
+            <div className="title">
+                <ul>
+                    <li>Rock</li>
+                    <li>Paper</li>
+                    <li>Scissors</li>
+                    <li>Lizard</li>
+                    <li>Spock</li>
+                </ul>
+            </div>
+
+            <div className="score-board flex-col">
+                <p>Score</p>
+                <h3>0</h3>
+            </div>
+        </header>
+
+        <main className="flex-col">
+            <div className="row-1 flex"><img src="./images/icon-scissors.svg" alt="scissors" /></div>
+            <div className="flex row-2">
+                <div><img src="./images/icon-spock.svg" alt="spock" /></div>
+                <div><img src="./images/icon-paper.svg" alt="paper" /></div>
+            </div>
+            <div className="flex row-3">
+                <div><img src="./images/icon-lizard.svg" alt="lizard" /></div>
+                <div><img src="./images/icon-rock.svg" alt="rock" /></div>
+            </div>
+        </main>
+
+        <button>Rules</button>
     </div>
   );
 }
