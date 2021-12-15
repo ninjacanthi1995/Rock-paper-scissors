@@ -4,14 +4,16 @@
   color: white;
   align-items: center;
   padding-top: 2rem;
+  padding-bottom: 1rem;
+  gap: 7rem;
 
   header {
-    width: 90%;
+    width: 85%;
     justify-content: space-between;
     align-items: center;
     border: 3px solid gray;
     border-radius: 0.5rem;
-    padding: 1rem;
+    padding: 0.5rem;
 
     .score-board {
       background-color: white;
@@ -27,7 +29,8 @@
   }
 
   main {
-    width: 60%;
+    width: 55%;
+    max-width: 300px;
     aspect-ratio: 1;
     background-image: url("../public/images/bg-pentagon.svg");
     background-size: contain;
@@ -35,18 +38,88 @@
     align-items: center;
     justify-content: center;
 
-    .row-1 {
-      width: 40%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background-color: white;
-      align-items: center;
+    .row-1, .row-2, .row-3{
+      width: 100%;
       justify-content: center;
-      border: 11px solid red;
 
-      img {
-        width: 50%;
+      div {
+        width: 40%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-color: white;
+        align-items: center;
+        justify-content: center;
+        border: 11px solid red;
+
+        img {
+          width: 50%;
+        }
       }
     }
+
+    .row-1 {
+      margin-top: -25%;
+    }
+
+    .row-2 {
+      width: 150%;
+      gap: 45%;
+      margin-bottom: 20%;
+    }
+
+    .row-3 {
+      gap: 25%;
+      margin-bottom: -25%;
+      width: 110%;
+    }
+  }
+
+  #result {
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    display: none;
+
+    div {
+      width: 100%;
+      max-width: 600px;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-inline: 1rem;
+      margin-bottom: 1rem;
+
+      div {
+        max-width: 200px;
+        align-items: center;
+
+        div {
+          width: 90%;
+          aspect-ratio: 1;
+          border-radius: 50%;
+          background-color: white;
+          align-items: center;
+          justify-content: center;
+          border: 11px solid red;
+
+          img {
+            width: 50%;
+          }
+        }
+      }
+    }
+
+    h1 {
+      margin-top: 2rem;
+    }
+  }
+
+  button {
+    text-transform: uppercase;
+    padding: 0.7rem 2rem;
+    background: none;
+    color: white;
+    border: 1px solid white;
+    border-radius: 0.4rem;
   }
 }

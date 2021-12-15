@@ -1,6 +1,19 @@
 import './App.scss';
+import Result from "./components/result";
+import {useState} from "react";
 
 function App() {
+  const [choice, setChoice] = useState('');
+
+  const select = (selectedChoice) => {
+      setChoice(selectedChoice);
+      let result = document.getElementById('result');
+      let main = document.getElementsByTagName('main')[0];
+      console.log(main)
+      result.style.display = 'flex';
+      main.style.display = 'none';
+  }
+
   return (
     <div className="App flex-col">
         <header className="flex">
@@ -21,16 +34,22 @@ function App() {
         </header>
 
         <main className="flex-col">
-            <div className="row-1 flex"><img src="./images/icon-scissors.svg" alt="scissors" /></div>
+            <div className="row-1 flex">
+                <div className="flex">
+                    <img onClick={() => select('scissors')} src="./images/icon-scissors.svg" alt="scissors" />
+                </div>
+            </div>
             <div className="flex row-2">
-                <div><img src="./images/icon-spock.svg" alt="spock" /></div>
-                <div><img src="./images/icon-paper.svg" alt="paper" /></div>
+                <div className="flex"><img src="./images/icon-spock.svg" alt="spock" /></div>
+                <div className="flex"><img src="./images/icon-paper.svg" alt="paper" /></div>
             </div>
             <div className="flex row-3">
-                <div><img src="./images/icon-lizard.svg" alt="lizard" /></div>
-                <div><img src="./images/icon-rock.svg" alt="rock" /></div>
+                <div className="flex"><img src="./images/icon-lizard.svg" alt="lizard" /></div>
+                <div className="flex"><img src="./images/icon-rock.svg" alt="rock" /></div>
             </div>
         </main>
+
+        <Result choice={choice} />
 
         <button>Rules</button>
     </div>
