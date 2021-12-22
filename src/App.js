@@ -1,17 +1,27 @@
 import './App.scss';
 import Result from "./components/result";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 function App() {
-  const [choice, setChoice] = useState('');
+  const score = useSelector(state => state.score.value)
+  const choice = useSelector(state => state.choice.value)
+    const dispatch = useDispatch()
 
   const select = (selectedChoice) => {
-      setChoice(selectedChoice);
+      dispatch({type: 'choice/select', choice: selectedChoice})
       let result = document.getElementById('result');
       let main = document.getElementsByTagName('main')[0];
-      console.log(main)
       result.style.display = 'flex';
       main.style.display = 'none';
+  }
+
+  const toggleRules = () => {
+      let rules = document.getElementById("rules");
+      if (rules.style.display === 'flex') {
+          rules.style.display = 'none'
+      } else {
+          rules.style.display = 'flex'
+      }
   }
 
   return (
@@ -29,7 +39,7 @@ function App() {
 
             <div className="score-board flex-col">
                 <p>Score</p>
-                <h3>0</h3>
+                <h3>{score}</h3>
             </div>
         </header>
 
@@ -40,18 +50,32 @@ function App() {
                 </div>
             </div>
             <div className="flex row-2">
-                <div className="flex"><img src="./images/icon-spock.svg" alt="spock" /></div>
-                <div className="flex"><img src="./images/icon-paper.svg" alt="paper" /></div>
+                <div className="flex">
+                    <img onClick={() => select('spock')} src="./images/icon-spock.svg" alt="spock" />
+                </div>
+                <div className="flex">
+                    <img onClick={() => select('paper')} src="./images/icon-paper.svg" alt="paper" />
+                </div>
             </div>
             <div className="flex row-3">
-                <div className="flex"><img src="./images/icon-lizard.svg" alt="lizard" /></div>
-                <div className="flex"><img src="./images/icon-rock.svg" alt="rock" /></div>
+                <div className="flex">
+                    <img onClick={() => select('lizard')} src="./images/icon-lizard.svg" alt="lizard" />
+                </div>
+                <div className="flex">
+                    <img onClick={() => select('rock')} src="./images/icon-rock.svg" alt="rock" />
+                </div>
             </div>
         </main>
 
-        <Result choice={choice} />
+        <Result/>
 
-        <button>Rules</button>
+        <button onClick={toggleRules}>Rules</button>
+
+        <div id="rules">
+            <h2>Rules</h2>
+            <img src="./images/image-rules-bonus.svg" alt="rules" />
+            <button onClick={toggleRules}><img src="./images/icon-close.svg" /></button>
+        </div>
     </div>
   );
 }

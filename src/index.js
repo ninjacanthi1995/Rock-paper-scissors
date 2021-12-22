@@ -4,10 +4,20 @@ import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import {Provider} from "react-redux";
+import {combineReducers, createStore} from "redux";
+import scoreReducer from "./reducers/score.reducer";
+import choiceReducer from "./reducers/choice.reducer";
+let rootReducer = combineReducers({
+    score: scoreReducer,
+    choice: choiceReducer
+})
+let store = createStore(rootReducer)
+
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById('root')
 );
 
