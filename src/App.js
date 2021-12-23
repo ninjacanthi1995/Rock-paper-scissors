@@ -28,13 +28,7 @@ function App() {
     <div className="App flex-col">
         <header className="flex">
             <div className="title">
-                <ul>
-                    <li>Rock</li>
-                    <li>Paper</li>
-                    <li>Scissors</li>
-                    <li>Lizard</li>
-                    <li>Spock</li>
-                </ul>
+                <img src="./images/logo-bonus.svg" />
             </div>
 
             <div className="score-board flex-col">
@@ -45,24 +39,36 @@ function App() {
 
         <main className="flex-col">
             <div className="row-1 flex">
-                <div className="flex">
-                    <img onClick={() => select('scissors')} src="./images/icon-scissors.svg" alt="scissors" />
+                <div className="border scissors flex">
+                    <div className="flex">
+                        <img onClick={() => select('scissors')} src="./images/icon-scissors.svg" alt="scissors" />
+                    </div>
                 </div>
             </div>
             <div className="flex row-2">
-                <div className="flex">
-                    <img onClick={() => select('spock')} src="./images/icon-spock.svg" alt="spock" />
+                <div className="border spock flex">
+                    <div className="flex">
+                        <img onClick={() => select('spock')} src="./images/icon-spock.svg" alt="spock" />
+                    </div>
                 </div>
-                <div className="flex">
-                    <img onClick={() => select('paper')} src="./images/icon-paper.svg" alt="paper" />
+
+                <div className="border paper flex">
+                    <div className="flex">
+                        <img onClick={() => select('paper')} src="./images/icon-paper.svg" alt="paper" />
+                    </div>
                 </div>
             </div>
             <div className="flex row-3">
-                <div className="flex">
-                    <img onClick={() => select('lizard')} src="./images/icon-lizard.svg" alt="lizard" />
+                <div className="border lizard flex">
+                    <div className="flex">
+                        <img onClick={() => select('lizard')} src="./images/icon-lizard.svg" alt="lizard" />
+                    </div>
                 </div>
-                <div className="flex">
-                    <img onClick={() => select('rock')} src="./images/icon-rock.svg" alt="rock" />
+
+                <div className="border rock flex">
+                    <div className="flex">
+                        <img onClick={() => select('rock')} src="./images/icon-rock.svg" alt="rock" />
+                    </div>
                 </div>
             </div>
         </main>
