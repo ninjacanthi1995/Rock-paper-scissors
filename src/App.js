@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 function App() {
   const score = useSelector(state => state.score.value)
-  const choice = useSelector(state => state.choice.value)
+  //const choice = useSelector(state => state.choice.value)
     const dispatch = useDispatch()
 
   const select = (selectedChoice) => {
@@ -28,7 +28,7 @@ function App() {
     <div className="App flex-col">
         <header className="flex">
             <div className="title">
-                <img src="./images/logo-bonus.svg" />
+                <img src="./images/logo-bonus.svg" alt="logo" />
             </div>
 
             <div className="score-board flex-col">
@@ -75,12 +75,12 @@ function App() {
 
         <Result/>
 
-        <button onClick={toggleRules}>Rules</button>
+        <button onClick={toggleRules} id="rules-btn">RULES</button>
 
         <div id="rules">
-            <h2>Rules</h2>
+            <h2>RULES</h2>
             <img src="./images/image-rules-bonus.svg" alt="rules" />
-            <button onClick={toggleRules}><img src="./images/icon-close.svg" /></button>
+            <button onClick={toggleRules}><img src="./images/icon-close.svg" alt="close" /></button>
         </div>
     </div>
   );

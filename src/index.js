@@ -8,9 +8,10 @@ import {Provider} from "react-redux";
 import {combineReducers, createStore} from "redux";
 import scoreReducer from "./reducers/score.reducer";
 import choiceReducer from "./reducers/choice.reducer";
+
 let rootReducer = combineReducers({
     score: scoreReducer,
-    choice: choiceReducer
+    choice: choiceReducer,
 })
 let store = createStore(rootReducer)
 

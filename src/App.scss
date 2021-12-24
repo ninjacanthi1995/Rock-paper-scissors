@@ -10,10 +10,9 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
   background: $background;
   color: white;
   align-items: center;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-  gap: 7rem;
+  padding-block: 2rem;
   font-family: 'Barlow Semi Condensed', sans-serif;
+  justify-content: space-between;
 
   header {
     width: 85%;
@@ -89,26 +88,6 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
           }
         }
       }
-
-      .scissors {
-        background: $scissors;
-      }
-
-      .rock {
-        background: $rock;
-      }
-
-      .paper {
-        background: $paper;
-      }
-
-      .lizard {
-        background: $lizard;
-      }
-
-      .spock {
-        background: $spock;
-      }
     }
 
     .row-1 {
@@ -141,37 +120,59 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
       justify-content: space-between;
       gap: 1rem;
       padding-inline: 1rem;
-      margin-bottom: 1rem;
+      //margin-bottom: 1rem;
 
       div {
         max-width: 200px;
         align-items: center;
 
-        div.flex {
+        div.border {
           width: 90%;
           aspect-ratio: 1;
           border-radius: 50%;
           background-color: white;
           align-items: center;
           justify-content: center;
-          border: 11px solid red;
+          box-shadow: inset 0px -2px 3px 1px rgba(10,10,10,0.5);
 
-          img {
-            width: 50%;
+          div {
+            width: 99%;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            box-shadow: inset 0px 4px 3px 1px rgba(10,10,10,0.2);
+
+            img {
+              width: 70%;
+            }
           }
         }
 
         .placeholder {
-          background-color: black;
+          background-color: hsl(237, 49%, 15%);
           width: 90%;
           aspect-ratio: 1;
           border-radius: 50%;
+        }
+
+        p {
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.05rem;
         }
       }
     }
 
     h1 {
       margin-top: 2rem;
+      text-transform: uppercase;
+    }
+
+    button {
+      background-color: white;
+      color: hsl(229, 25%, 31%);
     }
   }
 
@@ -179,10 +180,15 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     text-transform: uppercase;
     padding: 0.7rem 2.5rem;
     background: none;
-    color: white;
     border: 1px solid white;
     border-radius: 0.5rem;
-    letter-spacing: 0.1rem;
+    letter-spacing: 0.05rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+
+  button#rules-btn {
+    color: white;
   }
 
   #rules {
@@ -198,4 +204,24 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     color: black;
     border-radius: 1rem;
   }
+}
+
+.scissors {
+  background: $scissors;
+}
+
+.rock {
+  background: $rock;
+}
+
+.paper {
+  background: $paper;
+}
+
+.lizard {
+  background: $lizard;
+}
+
+.spock {
+  background: $spock;
 }

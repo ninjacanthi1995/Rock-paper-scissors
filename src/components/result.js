@@ -1,10 +1,9 @@
 import '../App.scss';
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 function Result() {
     const choices = ['rock', 'paper', 'scissors', 'spock', 'lizard']
-    const [houseChoice, setHouseChoice] = useState('')
     const dispatch = useDispatch();
     const userChoice = useSelector(state => state.choice.value)
 
@@ -40,6 +39,8 @@ function Result() {
 
         let housePicked = document.getElementById("house-pick")
         let placeholder = document.getElementsByClassName('placeholder')[0]
+        let list = housePicked.classList;
+        housePicked.classList.remove(list[list.length - 1]);
         housePicked.style.display = 'none';
         placeholder.style.display = 'block';
 
@@ -56,58 +57,74 @@ function Result() {
     }
 
     useEffect(() => {
-        let randomChoice = choices[Math.floor(Math.random() * 5)];
-
-        setTimeout(() => {
-            setHouseChoice(randomChoice)
-            let housePicked = document.getElementById("house-pick")
-            let placeholder = document.getElementsByClassName('placeholder')[0]
-            housePicked.style.display = 'flex';
-            placeholder.style.display = 'none';
-        } ,2000)
-
-        setTimeout(() => {
-            if ((userChoice !== '') && (randomChoice !== '')) {
-                let result = whoWin(userChoice, randomChoice)
-                if (result === 'You win') {
-                    dispatch({type: 'score/incremented'})
-                } else if (result === 'You lose') {
-                    dispatch({type: 'score/decremented'})
-                }
-            }
-
-            let placeholderTitle = document.getElementById("placeholder-title")
-            let button = document.getElementById("play-again-btn")
-            let placeholderBtn = document.getElementById("placeholder-btn")
+        if (userChoice) {
+            let randomChoice = choices[Math.floor(Math.random() * 5)];
+            let houseChoiceImg = document.getElementById('house-choice-img')
             let resultTitle = document.getElementById("result-title")
-            resultTitle.style.display = 'block';
-            button.style.display = 'block';
-            placeholderTitle.style.display = 'none';
-            placeholderBtn.style.display = 'none';
-        } ,4000)
+            let housePicked = document.getElementById("house-pick")
+
+            houseChoiceImg.src = `./images/icon-${randomChoice}.svg`;
+            resultTitle.textContent = whoWin(userChoice, randomChoice);
+            housePicked.classList.add(randomChoice)
+
+            setTimeout(() => {
+                let placeholder = document.getElementsByClassName('placeholder')[0]
+
+                housePicked.style.display = 'flex';
+                placeholder.style.display = 'none';
+            } ,1000)
+
+            setTimeout(() => {
+                if ((userChoice !== '') && (randomChoice !== '')) {
+                    let result = whoWin(userChoice, randomChoice)
+                    if (result === 'You win') {
+                        dispatch({type: 'score/incremented'})
+                    } else if (result === 'You lose') {
+                        dispatch({type: 'score/decremented'})
+                    }
+                }
+
+                let placeholderTitle = document.getElementById("placeholder-title")
+                let button = document.getElementById("play-again-btn")
+                let placeholderBtn = document.getElementById("placeholder-btn")
+
+                resultTitle.style.display = 'block';
+                button.style.display = 'block';
+                placeholderTitle.style.display = 'none';
+                placeholderBtn.style.display = 'none';
+            } ,2000)
+        } else {
+            dispatch({type: 'isFirstTime/no'})
+        }
     }, [userChoice])
 
     return (
         <div className="flex-col" id="result">
             <div className="flex">
                 <div className="flex-col">
-                    <div className="flex">
-                        <img src={`./images/icon-${userChoice}.svg`} alt="spock" />
+                    <div className={`border flex ${userChoice}`}>
+                        <div className="flex">
+                            <img src={`./images/icon-${userChoice}.svg`} alt="spock" />
+                        </div>
                     </div>
-                    <p>You picked</p>
+
+                    <p>YOU PICKED</p>
                 </div>
                 <div className="flex-col">
-                    <div className="flex" id="house-pick" style={{display: 'none'}}>
-                        <img src={`./images/icon-${houseChoice}.svg`} alt="paper" />
+                    <div className="border flex" id="house-pick" style={{display: 'none'}}>
+                        <div className="flex">
+                            <img src={`./images/icon-rock.svg`} alt="paper" id="house-choice-img" />
+                        </div>
                     </div>
+
                     <div className="placeholder"/>
-                    <p>The house picked</p>
+                    <p>THE HOUSE PICKED</p>
                 </div>
             </div>
-            <h1 id="result-title" style={{display: 'none'}}>{whoWin(userChoice, houseChoice)}</h1>
-            <h1 id="placeholder-title" style={{color: '#203757'}}>ABC</h1>
+            <h1 id="result-title" style={{display: 'none'}}>You win</h1>
+            <h1 id="placeholder-title" style={{opacity: 0}}>ABC</h1>
             <button onClick={playAgain} id="play-again-btn" style={{display: 'none'}}>Play again</button>
-            <button id="placeholder-btn" style={{border: '1px solid #203757', color: '#203757'}}>ABC</button>
+            <button id="placeholder-btn" style={{opacity: 0}}>ABC</button>
         </div>
     );
 }
