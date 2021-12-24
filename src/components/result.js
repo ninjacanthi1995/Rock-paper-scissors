@@ -6,6 +6,7 @@ function Result() {
     const choices = ['rock', 'paper', 'scissors', 'spock', 'lizard']
     const dispatch = useDispatch();
     const userChoice = useSelector(state => state.choice.value)
+    const score = useSelector(state => state.score.value)
 
     const whoWin = (user, house) => {
         if (user === house) return 'Draw';
@@ -44,14 +45,11 @@ function Result() {
         housePicked.style.display = 'none';
         placeholder.style.display = 'block';
 
-        let placeholderTitle = document.getElementById("placeholder-title")
-        let button = document.getElementById("play-again-btn")
-        let placeholderBtn = document.getElementById("placeholder-btn")
-        let resultTitle = document.getElementById("result-title")
-        resultTitle.style.display = 'none';
-        button.style.display = 'none';
-        placeholderTitle.style.display = 'block';
-        placeholderBtn.style.display = 'block';
+        let placeholderContainer = document.getElementsByClassName("placeholder-container")[0]
+        let resultContainer = document.getElementsByClassName("result-container")[0]
+
+        resultContainer.style.display = 'none';
+        placeholderContainer.style.display = 'flex';
 
         dispatch({type: 'choice/select', choice: ''})
     }
@@ -79,19 +77,18 @@ function Result() {
                     let result = whoWin(userChoice, randomChoice)
                     if (result === 'You win') {
                         dispatch({type: 'score/incremented'})
+                        localStorage.setItem('score', Number(score) + 1);
                     } else if (result === 'You lose') {
                         dispatch({type: 'score/decremented'})
+                        localStorage.setItem('score', Number(score) - 1);
                     }
                 }
 
-                let placeholderTitle = document.getElementById("placeholder-title")
-                let button = document.getElementById("play-again-btn")
-                let placeholderBtn = document.getElementById("placeholder-btn")
+                let placeholderContainer = document.getElementsByClassName("placeholder-container")[0]
+                let resultContainer = document.getElementsByClassName("result-container")[0]
 
-                resultTitle.style.display = 'block';
-                button.style.display = 'block';
-                placeholderTitle.style.display = 'none';
-                placeholderBtn.style.display = 'none';
+                resultContainer.style.display = 'flex';
+                placeholderContainer.style.display = 'none';
             } ,2000)
         } else {
             dispatch({type: 'isFirstTime/no'})
@@ -101,7 +98,7 @@ function Result() {
     return (
         <div className="flex-col" id="result">
             <div className="flex">
-                <div className="flex-col">
+                <div className="flex-col user">
                     <div className={`border flex ${userChoice}`}>
                         <div className="flex">
                             <img src={`./images/icon-${userChoice}.svg`} alt="spock" />
@@ -110,7 +107,8 @@ function Result() {
 
                     <p>YOU PICKED</p>
                 </div>
-                <div className="flex-col">
+
+                <div className="flex-col house">
                     <div className="border flex" id="house-pick" style={{display: 'none'}}>
                         <div className="flex">
                             <img src={`./images/icon-rock.svg`} alt="paper" id="house-choice-img" />
@@ -120,11 +118,17 @@ function Result() {
                     <div className="placeholder"/>
                     <p>THE HOUSE PICKED</p>
                 </div>
+
+                <div className="result-container flex-col" style={{display: 'none'}}>
+                    <h1 id="result-title">You win</h1>
+                    <button onClick={playAgain} id="play-again-btn">Play again</button>
+                </div>
+
+                <div className="placeholder-container flex-col" style={{opacity: 0}}>
+                    <h1 id="placeholder-title">ABC</h1>
+                    <button id="placeholder-btn">ABC</button>
+                </div>
             </div>
-            <h1 id="result-title" style={{display: 'none'}}>You win</h1>
-            <h1 id="placeholder-title" style={{opacity: 0}}>ABC</h1>
-            <button onClick={playAgain} id="play-again-btn" style={{display: 'none'}}>Play again</button>
-            <button id="placeholder-btn" style={{opacity: 0}}>ABC</button>
         </div>
     );
 }

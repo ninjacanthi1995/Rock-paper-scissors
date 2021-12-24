@@ -1,9 +1,9 @@
-function scoreReducer(state = { value: 0 }, action) {
+function scoreReducer(state = { value: localStorage.getItem('score') }, action) {
     switch (action.type) {
         case 'score/incremented':
-            return { value: state.value + 1 }
+            return { value: Number(state.value) + 1 }
         case 'score/decremented':
-            return { value: state.value - 1 }
+            return { value: Number(state.value) - 1 }
         default:
             return state
     }

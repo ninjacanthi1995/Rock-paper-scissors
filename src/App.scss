@@ -16,6 +16,7 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 
   header {
     width: 85%;
+    max-width: 800px;
     justify-content: space-between;
     align-items: center;
     border: 3px solid hsl(217, 16%, 45%);
@@ -33,20 +34,20 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     .score-board {
       background-color: white;
       color: black;
-      padding: 1rem 2rem;
+      padding: 1rem 2rem 0.5rem;
       align-items: center;
       border-radius: 0.5rem;
 
       p {
         text-transform: uppercase;
         color: hsl(229, 64%, 46%);
-        font-size: 0.8rem;
+        font-size: 0.6rem;
         letter-spacing: 0.02rem;
         font-weight: bold;
       }
 
       h3 {
-        font-size: 3rem;
+        font-size: 2.5rem;
         color: hsl(229, 25%, 31%);
       }
     }
@@ -73,6 +74,7 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
         align-items: center;
         justify-content: center;
         box-shadow: inset 0px -2px 3px 1px rgba(10,10,10,0.5);
+        cursor: pointer;
 
         div {
           width: 75%;
@@ -117,13 +119,14 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     div {
       width: 100%;
       max-width: 600px;
-      justify-content: space-between;
+      justify-content: center;
       gap: 1rem;
-      padding-inline: 1rem;
+      //padding-inline: 1rem;
+      flex-wrap: wrap;
       //margin-bottom: 1rem;
 
       div {
-        max-width: 200px;
+        max-width: 170px;
         align-items: center;
 
         div.border {
@@ -136,7 +139,7 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
           box-shadow: inset 0px -2px 3px 1px rgba(10,10,10,0.5);
 
           div {
-            width: 99%;
+            width: 80%;
             justify-content: center;
             align-items: center;
             background-color: white;
@@ -145,7 +148,7 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
             box-shadow: inset 0px 4px 3px 1px rgba(10,10,10,0.2);
 
             img {
-              width: 70%;
+              width: 40%;
             }
           }
         }
@@ -165,14 +168,22 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
       }
     }
 
-    h1 {
-      margin-top: 2rem;
-      text-transform: uppercase;
-    }
+    .result-container, .placeholder-container {
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: unset;
 
-    button {
-      background-color: white;
-      color: hsl(229, 25%, 31%);
+      h1 {
+        margin-top: 2rem;
+        text-transform: uppercase;
+      }
+
+      button {
+        background-color: white;
+        color: hsl(229, 25%, 31%);
+        cursor: pointer;
+      }
     }
   }
 
@@ -185,6 +196,7 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     letter-spacing: 0.05rem;
     font-weight: 600;
     font-size: 0.8rem;
+    cursor: pointer;
   }
 
   button#rules-btn {
@@ -201,7 +213,7 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    color: black;
+    color: hsl(229, 25%, 31%);
     border-radius: 1rem;
   }
 }
@@ -224,4 +236,74 @@ $background: linear-gradient(to bottom, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
 
 .spock {
   background: $spock;
+}
+
+@media (min-width: 600px) {
+  .App {
+    padding-inline: 2rem;
+
+    #result {
+      div {
+        justify-content: center;
+        max-width: unset;
+
+        div {
+          flex-direction: column-reverse;
+          gap: 2rem;
+          max-width: 400px;
+          width: 30%;
+
+          div.border, .placeholder {
+            max-width: 300px;
+          }
+
+          p {
+            font-size: 0.9rem;
+          }
+        }
+
+        div.user {
+          order: 1;
+        }
+
+        div.house {
+          order: 3;
+        }
+
+        div.result-container {
+          order: 2;
+          width: unset;
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        div.placeholder-container {
+          position: absolute;
+        }
+      }
+    }
+
+    button#rules-btn {
+      align-self: flex-end;
+    }
+
+    #rules {
+      width: unset;
+      height: unset;
+      top: 25%;
+      padding: 2rem;
+      gap: 1rem;
+      z-index: 2;
+    }
+
+    #overlay {
+      background-color: black;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      opacity: 0;
+      display: none;
+    }
+  }
 }
